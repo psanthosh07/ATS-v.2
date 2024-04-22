@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Categorization Result</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  h2 {
+    color: #555;
+  }
+  pre {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Resume Categorization Result</h1>
+
+  <h2>Education</h2>
+  <pre>{{ categorized_text['education'] }}</pre>
+
+  <h2>Skills</h2>
+  <pre>{{ categorized_text['skills'] }}</pre>
+
+  <h2>Experience</h2>
+  <pre>{{ categorized_text['experience'] }}</pre>
+</div>
+
+</body>
+</html>

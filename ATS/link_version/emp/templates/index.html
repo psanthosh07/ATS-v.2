@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicant Ratings</title>
+</head>
+<body>
+    <h1>Applicant Ratings</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Rating</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for applicant in applicants %}
+            <tr>
+                <td>{{ applicant.id }}</td>
+                <td>{{ applicant.info.name }}</td>
+                <td>{{ applicant.info.email }}</td>
+                <td>{{ applicant.info.phone }}</td>
+                <td>{{ applicant.rating }}</td>
+                <td>
+                    <form action="/select" method="post">
+                        <input type="hidden" name="applicant_id" value="{{ applicant.id }}">
+                        <button type="submit">Select</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
