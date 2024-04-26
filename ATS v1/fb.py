@@ -2,7 +2,7 @@ import firebase_admin
 from firebase_admin import credentials, storage
 
 # Initialize Firebase Admin SDK
-cred = credentials.Certificate("D:\ats100-e78c6-firebase-adminsdk-klyof-f2f1e0b08a.json")
+cred = credentials.Certificate("yourcredential.json")
 firebase_admin.initialize_app(cred, {
     'storageBucket': 'your-storage-bucket-url'
 })
