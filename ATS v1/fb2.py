@@ -6,7 +6,7 @@ from firebase_admin import credentials, firestore
 app = Flask(__name__)
 
 # Initialize Firebase Admin SDK with service account key and storage bucket
-cred = credentials.Certificate("D:/ats100-e78c6-firebase-adminsdk-klyof-f2f1e0b08a.json")
+cred = credentials.Certificate("your credentials.json")
 firebase_admin.initialize_app(cred, {
     'storageBucket': 'ats100-e78c6.appspot.com'
 })
