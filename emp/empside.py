@@ -6,7 +6,7 @@ import re
 app = Flask(__name__)
 
 # Initialize Firebase Admin SDK with service account key
-cred = credentials.Certificate(r"C:\Users\Sanjana\Downloads\ats100-e78c6-firebase-adminsdk-klyof-f2f1e0b08a.json")
+cred = credentials.Certificate(r"yourcredential.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
