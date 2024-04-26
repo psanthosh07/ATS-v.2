@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Applicants List</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Rank</th>
+            <th>Action</th>
+        </tr>
+        {% for applicant in applicants %}
+        <tr>
+            <td><a href="{{ url_for('view_applicant_details', name=applicant.name) }}">{{ applicant.name }}</a></td>
+            <td>{{ applicant.email }}</td>
+            <td>{{ applicant.phone }}</td>
+            <td>{{ applicant.rank }}</td>
+            <td>
+                {% if applicant.selected %}
+                <p>Selected</p>
+                {% else %}
+                <form action="/select_applicant" method="post">
+                    <input type="hidden" name="applicant_name" value="{{ applicant.name }}">
+                    <button type="submit">Select</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <button id="sortButton">Sort by Rank</button>
+
+    <script>
+    $(document).ready(function() {
+        $('#sortButton').click(function() {
+            var table = $('table');
+            var rows = table.find('tr:gt(0)').toArray(); // Exclude the first row (header row) from sorting
+            rows.sort(function(a, b) {
+                var rankA = parseInt($(a).find('td:eq(3)').text());
+                var rankB = parseInt($(b).find('td:eq(3)').text());
+                return rankA - rankB;
+            });
+            $.each(rows, function(index, row) {
+                table.append(row);
+            });
+        });
+    });
+</script>
+
+    </script>
+</body>
+</html>

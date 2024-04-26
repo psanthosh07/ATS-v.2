@@ -1,0 +1,59 @@
+from flask import Flask, render_template
+import firebase_admin
+from firebase_admin import credentials, firestore
+
+app = Flask(__name__)
+
+# Initialize Firestore client
+cred = credentials.Certificate("D:/ats100-e78c6-firebase-adminsdk-klyof-f2f1e0b08a.json")
+firebase_admin.initialize_app(cred)
+db = firestore.client()
+
+@app.route('/applicants')
+def list_and_rate_applicants():
+    applicants = get_applicants_from_firestore()
+    rated_applicants = rate_applicants_for_data_science(applicants)
+    return render_template('applicants.html', applicants=rated_applicants)
+
+def get_applicants_from_firestore():
+    applicants = []
+    applicants_ref = db.collection('categorized_text').stream()
+    for applicant in applicants_ref:
+        applicants.append(applicant.to_dict())
+    return applicants
+
+def rate_applicants_for_data_science(applicants):
+    rated_applicants = []
+    for applicant in applicants:
+        data_science_score = rate_data_science_skills(applicant)
+        rated_applicants.append({'name': applicant['name'], 'email': applicant['email'], 'phone': applicant['phone'], 'data_science_score': data_science_score})
+    return rated_applicants
+
+def rate_data_science_skills(applicant):
+    skills = applicant.get('skills', '').lower()
+    
+    # Common data science skills required
+    common_data_science_skills = ['python', 'r', 'sql', 'machine learning', 'deep learning', 'statistics',
+                                  'data visualization', 'data wrangling', 'big data', 'tensorflow', 'keras',
+                                  'scikit-learn', 'pandas', 'numpy', 'matplotlib', 'seaborn', 'tableau']
+    
+    # Initialize skill score and count
+    skill_score = 0
+    skill_count = 0
+    
+    # Calculate skill score based on common data science skills
+    for skill in common_data_science_skills:
+        if skill in skills:
+            skill_score += 1
+        skill_count += 1
+    
+    # Calculate the percentage of skills possessed by the applicant
+    if skill_count > 0:
+        data_science_score = (skill_score / skill_count) * 100
+    else:
+        data_science_score = 0
+    
+    return data_science_score
+
+if __name__ == '__main__':
+    app.run(debug=True)
