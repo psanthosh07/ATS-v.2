@@ -3,14 +3,14 @@ from PyPDF2 import PdfReader
 import firebase_admin
 from firebase_admin import credentials, firestore
 from twilio.rest import Client
-account_sid = 'AC0d39df5bde67d9e8f3f110a2318546df'
-auth_token = 'c758d2579592597a09fb4f6f2220fe9e'
+account_sid = 'enter your auth id'
+auth_token = 'enter your auth token'
 client = Client(account_sid, auth_token)
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 # Initialize Firebase Admin SDK with service account key and storage bucket
-cred = credentials.Certificate(r"C:\Users\Sanjana\Downloads\ats100-e78c6-firebase-adminsdk-klyof-f2f1e0b08a.json")
+cred = credentials.Certificate(r"yourcreditional.json")
 firebase_admin.initialize_app(cred, {
     'storageBucket': 'ats100-e78c6.appspot.com'
 })
