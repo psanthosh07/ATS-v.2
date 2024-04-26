@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .sort-btn {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>User List</h1>
+    <button class="sort-btn" onclick="sortTable()">Sort by Rating</button>
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Education</th>
+                <th>Skills</th>
+                <th>Experience</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in categorized_texts %}
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.education }}</td>
+                <td>{{ user.skills }}</td>
+                <td>{{ user.experience }}</td>
+                <td>{{ user.rating }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        function sortTable() {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById("userTable");
+            switching = true;
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = parseFloat(rows[i].getElementsByTagName("td")[4].innerText);
+                    y = parseFloat(rows[i + 1].getElementsByTagName("td")[4].innerText);
+                    if (x < y) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

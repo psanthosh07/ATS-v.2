@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicants</title>
+</head>
+<body>
+    <h1>Applicants</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Education</th>
+            <th>Skills</th>
+            <th>Experience</th>
+            <th>Rate</th>
+        </tr>
+        {% for applicant in applicants %}
+        <tr>
+            <td>{{ applicant['name'] }}</td>
+            <td>{{ applicant['education'] }}</td>
+            <td>{{ applicant['skills'] }}</td>
+            <td>{{ applicant['experience'] }}</td>
+            <td>
+                <form action="/rate" method="post">
+                    <input type="hidden" name="name" value="{{ applicant['name'] }}">
+                    <input type="text" name="skills" placeholder="Enter skills">
+                    <button type="submit">Rate</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

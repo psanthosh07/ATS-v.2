@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicants</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Applicants List</h1>
+    <form action="/applicants" method="post">
+        <button type="submit" name="sort_by" value="data_science_rank">Sort by Top Ranks</button>
+    </form>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Data Science Rank</th>
+        </tr>
+        {% for applicant in applicants %}
+        <tr>
+            <td>{{ applicant.name }}</td>
+            <td>{{ applicant.email }}</td>
+            <td>{{ applicant.phone }}</td>
+            <td>{{ applicant.data_science_rank }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

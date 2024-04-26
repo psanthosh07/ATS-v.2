@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Categorization Result</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-image: url(https://images.unsplash.com/photo-1541140134513-85a161dc4a00?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-position: center;
+    background-repeat: no-repeat ;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color:  #C0C0C0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  h2 {
+    color: #555;
+    margin-top: 30px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+  pre {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+  }
+  .section {
+    margin-bottom: 30px;
+  }
+  .section-heading {
+    font-size: 24px;
+    color: black;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .button-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .submit-button {
+    padding: 10px 20px;
+    background-color:  #404040;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  .submit-button:hover {
+    background-color:  #585858;
+  }
+  .label {
+    color: black; /* Set label text color to black */
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Resume Summary</h1>
+  <h2><span class="label">Name:</span> <span style="color: black;">{{ name }}</span></h2> <!-- Display the name inputted by the user -->
+  <h2><span class="label">Email:</span> <span style="color: black;">{{ session['email'] | lower }}</span></h2> <!-- Display the email ID inputted by the user and convert to lowercase -->
+
+  <div class="section">
+    <h3 class="section-heading">Education</h3>
+    <pre>{{ categorized_text['education'] }}</pre>
+  </div>
+
+  <div class="section">
+    <h3 class="section-heading">Skills</h3>
+    <pre>{{ categorized_text['skills'] }}</pre>
+  </div>
+
+  <div class="section">
+    <h3 class="section-heading">Experience</h3>
+    <pre>{{ categorized_text['experience'] }}</pre>
+  </div>
+
+  <div class="button-container">
+    <button class="submit-button" onclick="window.location.href='/submission_confirmation'">Submit</button>
+  </div>
+</div>
+
+</body>
+</html>
