@@ -7,13 +7,13 @@ import re
 app = Flask(__name__)
 
 # Initialize Firebase Admin SDK with service account key
-cred = credentials.Certificate(r"C:\Users\Sanjana\Downloads\ats100-e78c6-firebase-adminsdk-klyof-f2f1e0b08a.json")
+cred = credentials.Certificate(r"credentials.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 # Twilio credentials
-account_sid = 'AC0d39df5bde67d9e8f3f110a2318546df'
-auth_token = 'c758d2579592597a09fb4f6f2220fe9e'
+account_sid = 'yourid'
+auth_token = 'yourtoken'
 twilio_client = Client(account_sid, auth_token)
 
 # Function to calculate rank based on skills and education
